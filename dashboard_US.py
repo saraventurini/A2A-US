@@ -687,7 +687,7 @@ n_institutions_selected = len(institutions_selected)
 dict_institution_name_id_selected = institutions_info_df_selected[['institution_id','institution_name']].set_index('institution_name').to_dict()['institution_id']
 dict_institution_id_name_selected = institutions_info_df_selected[['institution_id','institution_name']].set_index('institution_id').to_dict()['institution_name']
 dict_institution_id_institution_id_scaled2_selected = institutions_info_df_selected[['institution_id']].reset_index().set_index('institution_id').to_dict()['index']
-with open(f'../dict_institution_id_name.pkl', "rb") as f:
+with open(f'dict_institution_id_name.pkl', "rb") as f:
     dict_institution_id_name = pickle.load(f)
 
 with open(f'network_data_k{10}_period{3}.pkl', "rb") as f:
@@ -704,10 +704,10 @@ entropy_df_selected = pd.read_csv("entropy_df_selected.csv.gz", compression="gzi
 entropy_min, entropy_max = entropy_df_selected.disorder_index.min(),entropy_df_selected.disorder_index.max()
 
 RCA_topic_df_selected = pd.read_csv("RCA_topic_df_selected.csv.gz", compression="gzip") 
-df_topics = pd.read_csv(f'../../Tables/df_topics.csv.gz', compression='gzip')
+df_topics = pd.read_csv(f'df_topics.csv.gz', compression='gzip')
 topic_id_name_dict = df_topics[['topic_id','topic_name']].set_index('topic_id').to_dict()['topic_name']
 domain_id_name_dict = df_topics[['domain_id','domain_name']].drop_duplicates().set_index('domain_id').to_dict()['domain_name']
-topics_embedding_reduced_df = pd.read_csv(f'../../dataframes_2025Oct/topics_embedding_reduced_weighted_df.csv.zip').reset_index().rename(columns={'index':'topic_id_scaled'})
+topics_embedding_reduced_df = pd.read_csv(f'topics_embedding_reduced_weighted_df.csv.zip').reset_index().rename(columns={'index':'topic_id_scaled'})
 topics_set = list(topics_embedding_reduced_df.topic_id)
 pos_topics = {row["topic_id"]: (row["feature_0"], row["feature_1"]) for _, row in topics_embedding_reduced_df.iterrows()}
 pos_topics = {int(k): v for k, v in pos_topics.items()}
