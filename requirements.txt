@@ -3,7 +3,6 @@ plotly
 pandas
 numpy
 altair
-pickle
 pydeck
 networkx
 
